@@ -3,7 +3,14 @@ import cors from 'cors';
 import fs from 'fs';
 
 const app = express();
-app.use(cors());
+
+// CORS configurado para permitir solo desde https://03.cl
+app.use(cors({
+  origin: 'https://03.cl',
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type']
+}));
+
 app.use(express.json());
 
 const USERS_FILE = './users.json';
